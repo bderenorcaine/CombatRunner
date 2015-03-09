@@ -1,0 +1,44 @@
+What kinds of things must be done to the model?
+  - Actions
+	- Actions performed (Free, Simple, Complex)
+	- Action delayed
+    - Round starts / ends (automatic)
+    - Phase starts / ends (automatic)
+  - Modifiers
+	- Damage taken
+	- Drugs taken
+	- Cyberware activated
+	- Combatant added
+	- Drugs stop working
+	- Damage healed
+	- Spells sustained
+	- Spell effects begin
+	- Spell effects end
+
+What kinds of data must the model contain?
+  - Each combatant
+    - BARSCILWEMR
+	- Initiative (do separately)
+	- Stun Damage
+	- Physical Damage (possibly merge into one damage track)
+	- whether the combatant is currently in the fight
+
+What kinds of data must be displayed?
+  - Whose turn is it
+  - What modifiers do they have (and why)
+  - Who's up next?
+  
+Use Case Scenario 1 - Combat Creation
+  - User opens program, clicks on "new fight"
+  - Dialog opens, asking which edition to use
+  - User chooses either 4th or 5th edition
+  - Tab opens, showing empty fight
+  - User clicks on "new combatant"
+  - Window opens, showing combatant dialog
+	- BARSCILWEMR section with preset selection
+	- Edition-dependent Initiative selection field
+	- Name field
+  - User selects one of the presets, enters the initiative, names the combatant and clicks OK.
+  - Adding Combatants repeats until all combatants created
+  - User clicks on checkbox for all those combatants that are in the fight from the beginning
+  - User clicks on "Save Fight" and fight is saved to disk
