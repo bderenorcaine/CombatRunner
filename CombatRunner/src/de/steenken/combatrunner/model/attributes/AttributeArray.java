@@ -24,6 +24,18 @@ public class AttributeArray {
 			return defaultValue;
 		}
 	}
+	
+	public final boolean hasValue(Attribute.Name name) {
+		return array.containsKey(name);
+	}
+	
+	public final boolean hasValue(String name) {
+		try {
+			return array.containsKey(Attribute.Name.valueOf(name));
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
+	}
 
 	public void setValue(final Attribute.Name name, final int value) {
 		if (!array.containsKey(name)) {

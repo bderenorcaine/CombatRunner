@@ -14,6 +14,11 @@ public class FifthEditionInitiative extends Initiative {
 		super(combatant);
 	}
 	
+	public FifthEditionInitiative(final Combatant combatant, final int dice) {
+		super(combatant);
+		initiativeDice = dice;
+	}
+
 	@Override
 	public int compareTo(Initiative o) {
 		if (o.getEdition() != getEdition()) {
@@ -45,6 +50,11 @@ public class FifthEditionInitiative extends Initiative {
 	
 	public final String toString() {
 		return getBaseValue() + " + " + initiativeDice + "D6";
+	}
+
+	@Override
+	public int getEditionAgnosticValue() {
+		return initiativeDice;
 	}
 
 }

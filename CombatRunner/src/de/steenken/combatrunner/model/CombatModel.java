@@ -21,6 +21,16 @@ public class CombatModel extends AbstractListModel<Combatant> implements Iterabl
 	
 	private final Edition edition;
 	
+	private String name = "Unnamed Combat";
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public CombatModel(final Edition edition) {
 		this.edition = edition;
 	}

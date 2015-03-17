@@ -5,12 +5,13 @@ import de.steenken.combatrunner.conf.GlobalConstants;
 public class Attribute {
 
 	public enum Name {
-		STR("Strength", "St�rke"), BOD("Body", "Konstitution"), AGI("Agility",
+		STR("Strength", "Stärke"), BOD("Body", "Konstitution"), AGI("Agility",
 				"Geschicklichkeit"), REA("Reaction", "Reaktion"), INT(
 				"Intuition", "Intuition"), LOG("Logic", "Logik"), CHA(
 				"Charisma", "Charisma"), WIL("Willpower", "Willenskraft"), EDG(
 				"Edge", "Edge"), MAG("Magic", "Magie"), RES("Resonance",
-				"Resonanz");
+				"Resonanz"), PDa("Physical Damage", "Körperlicher Schaden"), SDa(
+				"Stun Damage", "Betäubungsschaden");
 
 		private final String name;
 		private final String germanName;
@@ -33,15 +34,15 @@ public class Attribute {
 	}
 
 	private int value;
-	
+
 	Attribute(final int value) {
 		this.value = value;
 	}
-	
+
 	public final int getValue() {
 		return value;
 	}
-	
+
 	final void setValue(final int value) {
 		this.value = value;
 	}

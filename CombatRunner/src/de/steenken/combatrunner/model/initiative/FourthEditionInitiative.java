@@ -21,6 +21,11 @@ public class FourthEditionInitiative extends Initiative {
 		super(combatant);
 	}
 	
+	FourthEditionInitiative(final Combatant combatant, final int passes) {
+		super(combatant);
+		initiativePasses = passes;
+	}
+	
 	private int getValueThisPhase() {
 		return getBaseValue() + lastRolled;
 	}
@@ -46,6 +51,7 @@ public class FourthEditionInitiative extends Initiative {
 	@Override
 	public void roll() {
 		affectedByGlitch = false;
+		actionsThisRound = 0;
 		try {
 			lastRolled = de.steenken.combatrunner.dice.Dice.getSuccesses(getBaseValue());
 		} catch (Glitch e) {
@@ -73,6 +79,11 @@ public class FourthEditionInitiative extends Initiative {
 	@Override
 	public Edition getEdition() {
 		return Edition.FOURTH;
+	}
+
+	@Override
+	public int getEditionAgnosticValue() {
+		return initiativePasses;
 	}
 
 }

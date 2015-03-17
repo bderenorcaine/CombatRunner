@@ -15,4 +15,10 @@ public class FifthEditionInitiativeFactory extends InitiativeFactory {
 		return Edition.FIFTH;
 	}
 
+	@Override
+	public Initiative makeInitiative(Combatant combatant, int number) {
+		return new FifthEditionInitiative(combatant, number);
+	}
+
+	
 }

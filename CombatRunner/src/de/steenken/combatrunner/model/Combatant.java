@@ -5,6 +5,7 @@ import de.steenken.combatrunner.model.attributes.AttributeArray;
 import de.steenken.combatrunner.model.attributes.AttributeFactory;
 import de.steenken.combatrunner.model.attributes.Attribute.Name;
 import de.steenken.combatrunner.model.initiative.Initiative;
+import de.steenken.combatrunner.persistence.CombatRunnerFile.attribute_array;
 
 public class Combatant {
 
@@ -15,6 +16,10 @@ public class Combatant {
 	private String name = null;
 
 	private final CombatModel combat;
+
+	public CombatModel getCombat() {
+		return combat;
+	}
 
 	private Combatant(final CombatModel combat) {
 		this.combat = combat;
@@ -30,6 +35,10 @@ public class Combatant {
 
 	public final int getAttribute(Name name) {
 		return attributes.getValue(name, 0);
+	}
+	
+	public final AttributeArray getAttributes() {
+		return attributes;
 	}
 
 	public final boolean canAct() {

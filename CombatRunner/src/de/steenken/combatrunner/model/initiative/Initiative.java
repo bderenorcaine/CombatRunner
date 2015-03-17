@@ -27,4 +27,5 @@ public abstract class Initiative implements Comparable<Initiative>{
 		return combatant.getAttribute(Name.REA) + combatant.getAttribute(Name.INT);
 	}
 	
+	public abstract int getEditionAgnosticValue();
 }

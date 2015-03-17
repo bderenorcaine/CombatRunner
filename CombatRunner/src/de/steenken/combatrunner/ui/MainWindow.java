@@ -2,6 +2,8 @@ package de.steenken.combatrunner.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,11 +11,13 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.MenuElement;
 
 import de.steenken.combatrunner.conf.GlobalConstants;
 import de.steenken.combatrunner.model.CombatModel;
@@ -45,10 +49,37 @@ public class MainWindow extends JFrame {
 
 	private JPanel runPanel;
 
-	public MainWindow() {
-		construct();
+	private static MainWindow singleton = null;
+	
+	public final void errorMessage(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
 	}
+	
+	private class EventHandler implements ActionListener {
 
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			if (event.getSource() == quit) {
+				System.out.println("Quit Button pressed.");
+			}
+		}
+		
+	}
+	
+	private final EventHandler eventHandler = new EventHandler();
+	
+	public static MainWindow getMainWindow() {
+		if (singleton == null) {
+			singleton = new MainWindow();
+		}
+		return singleton;
+	}
+	
+	private MainWindow() {
+		construct();
+		connect();
+	}
+	
 	private void construct() {
 		// set basic window properties
 		setTitle("CombatRunner v" + GlobalConstants.VERSION);
@@ -93,6 +124,14 @@ public class MainWindow extends JFrame {
 
 		pack();
 		setVisible(true);
+	}
+	
+	private void connect() {
+		for (MenuElement item : combatMenu.getSubElements()[0].getSubElements()) {
+			JMenuItem menuItem = (JMenuItem) item;
+			System.out.println("Connecting MenuItem " + menuItem.getText());
+			((JMenuItem) menuItem).addActionListener(eventHandler);
+		}
 	}
 
 	private void constructRunPanel() {

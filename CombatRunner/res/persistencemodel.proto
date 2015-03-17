@@ -1,0 +1,72 @@
+package de.steenken.combatrunner.persistence;
+
+option java_package = "de.steenken.combatrunner.persistence";
+option java_outer_classname = "CombatRunnerFile";
+
+message file {
+	optional combatant combatant = 1;
+	optional combat combat = 2;
+	optional combat_state state = 3;
+}
+
+enum Attribute {
+	BOD = 1;
+	AGI = 2;
+	REA = 3;
+	STR = 4;
+	CHA = 5;
+	INT = 6;
+	LOG = 7;
+	WIL = 8;
+	EDG = 9;
+	RES = 10;
+	MAG = 11;
+	PDa = 12;
+	SDa = 13;
+}
+
+enum Edition {
+	FOURTH = 1;
+	FIFTH = 2;
+}
+
+message initiative {
+	required uint32 value = 1;
+}
+
+message attribute_modifier {
+	required Attribute attribute = 1;
+	required int32 modifier = 2;
+}
+
+message initiative_modifier {
+	required int32 modifier = 1;
+}
+
+message modifier {
+	optional attribute_modifier attribute = 1;
+	optional initiative_modifier inimod = 2;
+}
+
+message attribute_array {
+	repeated Attribute attributes = 1;
+	repeated uint32 values = 2;
+}
+
+message combatant {
+	required Edition edition = 1;
+	required attribute_array attributes = 2;
+	optional initiative initiative = 3;
+	required string name = 4;
+}
+
+message combat_state {
+	repeated uint32 number_of_modifiers = 1;
+	repeated modifier modifiers = 2;
+}
+
+message combat {
+	required Edition edition = 1;
+	required string name = 2;
+	repeated combatant participants = 3; 
+}

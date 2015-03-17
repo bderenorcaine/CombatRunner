@@ -13,7 +13,7 @@ public class Starter {
             private MainWindow window;
             
 			private void createAndShowGUI() {
-				window = new MainWindow();
+				window = MainWindow.getMainWindow();
 			}
         });
 	}
