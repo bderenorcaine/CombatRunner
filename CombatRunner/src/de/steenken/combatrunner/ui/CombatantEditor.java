@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.HashMap;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -51,7 +52,7 @@ public class CombatantEditor extends JFrame {
 		private AttributeEditor() {
 			inputPanel.setLayout(new GridLayout(2, Attribute.Name.values().length));
 			for (Attribute.Name attr : Attribute.Name.values()) {
-				labels.put(attr, new JLabel(attr.toString()));
+				labels.put(attr, new JLabel(attr.name()));
 				if ((attr != Attribute.Name.PDa) && (attr != Attribute.Name.SDa)) {
 					inputs.put(attr, new JComboBox<Integer>(baseAttrChoices));
 				} else {
@@ -59,12 +60,12 @@ public class CombatantEditor extends JFrame {
 				}
 			}
 			for (Attribute.Name attr : Attribute.Name.values()) {
-				getContentPane().add(labels.get(attr));
+				inputPanel.add(labels.get(attr));
 			}
 			for (Attribute.Name attr : Attribute.Name.values()) {
-				getContentPane().add(inputs.get(attr));
+				inputPanel.add(inputs.get(attr));
 			}
-			getContentPane().add(inputPanel, BorderLayout.NORTH);
+			getContentPane().add(inputPanel, BorderLayout.CENTER);
 			getContentPane().add(resetButton, BorderLayout.SOUTH);
 		}
 	}
@@ -119,7 +120,7 @@ public class CombatantEditor extends JFrame {
 		setPreferredSize(new Dimension(500, 400));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-		getContentPane().setLayout(new GridLayout(4, 1));
+		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
 		// construct the name and race panel
 		nameAndRace = new JPanel();
