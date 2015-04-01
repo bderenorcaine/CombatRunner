@@ -1,14 +1,18 @@
 package de.steenken.combatrunner.ui;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.HashMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JSpinner;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +24,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 
 import de.steenken.combatrunner.conf.GlobalConstants;
 import de.steenken.combatrunner.model.CombatModel.Edition;
@@ -40,6 +45,12 @@ public class CombatantEditor extends JFrame {
 	private CombatantEditor() {
 		construct();
 		connect();
+	}
+	
+	private void drawBorder(JComponent component) {
+		component.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.red),
+                component.getBorder()));
 	}
 
 	private class AttributeEditor extends JPanel {
@@ -64,30 +75,20 @@ public class CombatantEditor extends JFrame {
 			for (Attribute.Name attr : Attribute.Name.values()) {
 				inputPanel.add(inputs.get(attr));
 			}
-			getContentPane().add(inputPanel, BorderLayout.CENTER);
-			getContentPane().add(resetButton, BorderLayout.SOUTH);
+			setLayout(new GridLayout(2, 1));
+			add(inputPanel);
+//			resetButton.setPreferredSize(new Dimension(Short.MAX_VALUE, resetButton.getHeight()));
+			add(resetButton);
 		}
 	}
 
 	private FourthEdInitiativeEditor editor4th = new FourthEdInitiativeEditor();
 	private FifthEdInitiativeEditor editor5th = new FifthEdInitiativeEditor();
 
-	private InitiativeEditor getEditor(final Edition edition) {
-		switch (edition) {
-		case FOURTH:
-			return editor4th;
-		case FIFTH:
-			return editor5th;
-		default:
-			throw new RuntimeException("Error - unsupported rules edition \""
-					+ edition + "\"");
-		}
-	}
-
 	private abstract class InitiativeEditor extends JPanel {
 		protected JSpinner iniPicker;
 		protected JSpinner bonusPicker;
-
+		
 	}
 
 	private class FourthEdInitiativeEditor extends InitiativeEditor {
@@ -106,7 +107,7 @@ public class CombatantEditor extends JFrame {
 
 	private JPanel initiativePanel;
 	private JComboBox<Edition> editionPicker;
-	private InitiativeEditor initiativeEditor;
+	private JPanel initiativeEditor;
 
 	private JPanel buttonPanel;
 	private JButton deleteButton;
@@ -130,18 +131,28 @@ public class CombatantEditor extends JFrame {
 		nameAndRace
 				.add(racePicker = new JComboBox<>(RaceDefaults.Race.values()));
 		getContentPane().add(nameAndRace);
+		getContentPane().add(new JSeparator(SwingConstants.HORIZONTAL));
 
 		// construct and add the attributes editor
 		attributeEditor = new AttributeEditor();
 		getContentPane().add(attributeEditor);
+		getContentPane().add(new JSeparator(SwingConstants.HORIZONTAL));
 
 		// construct and add the initiative panel
 		initiativePanel = new JPanel();
+		initiativePanel.setLayout(new GridLayout(1, 2));
 		initiativePanel.add(editionPicker = new JComboBox<Edition>(Edition
-				.values()), BorderLayout.LINE_START);
-		initiativeEditor = getEditor(editionPicker.getItemAt(editionPicker.getSelectedIndex()));
-		initiativePanel.add(initiativeEditor, BorderLayout.LINE_END);
+				.values()));
+		initiativeEditor = new JPanel();
+		initiativeEditor.setLayout(new CardLayout());
+		initiativeEditor.add(editor4th, Edition.FOURTH.name());
+		initiativeEditor.add(editor5th, Edition.FIFTH.name());
+		initiativePanel.add(initiativeEditor);
+		drawBorder(initiativePanel);
+		drawBorder(initiativeEditor);
+		drawBorder(editionPicker);
 		getContentPane().add(initiativePanel);
+		getContentPane().add(new JSeparator(SwingConstants.HORIZONTAL));
 		
 		// construct and add the button panel
 		buttonPanel = new JPanel();
