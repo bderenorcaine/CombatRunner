@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JSpinner;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 import de.steenken.combatrunner.conf.GlobalConstants;
 import de.steenken.combatrunner.model.CombatModel.Edition;
@@ -42,21 +44,18 @@ public class CombatantEditor extends JFrame {
 
 	private class AttributeEditor extends JPanel {
 		private HashMap<Attribute.Name, JLabel> labels = new HashMap<>();
-		private HashMap<Attribute.Name, JComboBox<Integer>> inputs = new HashMap<>();
+		private HashMap<Attribute.Name, JSpinner> inputs = new HashMap<>();
 		private JButton resetButton = new JButton("Reset to Race Defaults");
 		private JPanel inputPanel = new JPanel();
-		
-		private final Integer[] baseAttrChoices = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-		private final Integer[] damageChoices = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 		
 		private AttributeEditor() {
 			inputPanel.setLayout(new GridLayout(2, Attribute.Name.values().length));
 			for (Attribute.Name attr : Attribute.Name.values()) {
 				labels.put(attr, new JLabel(attr.name()));
 				if ((attr != Attribute.Name.PDa) && (attr != Attribute.Name.SDa)) {
-					inputs.put(attr, new JComboBox<Integer>(baseAttrChoices));
+					inputs.put(attr, new JSpinner(new SpinnerNumberModel(1, 1, 12, 1)));
 				} else {
-					inputs.put(attr, new JComboBox<Integer>(damageChoices));
+					inputs.put(attr, new JSpinner(new SpinnerNumberModel(0, 0, 15, 1)));
 				}
 			}
 			for (Attribute.Name attr : Attribute.Name.values()) {
@@ -86,8 +85,8 @@ public class CombatantEditor extends JFrame {
 	}
 
 	private abstract class InitiativeEditor extends JPanel {
-		protected JComboBox<Integer> iniPicker;
-		protected JComboBox<Integer> bonusPicker;
+		protected JSpinner iniPicker;
+		protected JSpinner bonusPicker;
 
 	}
 
