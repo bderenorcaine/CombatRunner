@@ -25,13 +25,15 @@ import de.steenken.combatrunner.model.Combatant;
 import de.steenken.combatrunner.model.CombatModel.Edition;
 import de.steenken.combatrunner.model.IncompleteModelException;
 import de.steenken.combatrunner.model.attributes.AttributeFactory;
-import de.steenken.combatrunner.model.attributes.RaceDefaults.Race;
+import de.steenken.combatrunner.model.attributes.MetatypeDefaults.Metatype;
 import de.steenken.combatrunner.model.initiative.InitiativeFactory;
 
 public class MainWindow extends JFrame {
 
 	private static final CombatModel emptyDefaultCombat = new CombatModel(
 			Edition.FOURTH);
+	
+	private CombatModel combat = emptyDefaultCombat;
 
 	private JMenuBar menubar;
 	private JMenu combatMenu;
@@ -138,13 +140,21 @@ public class MainWindow extends JFrame {
 		runPanel.add(new JLabel("Under Construction"));
 	}
 
+	public CombatModel getCombat() {
+		return combat;
+	}
+
+	public void setCombat(CombatModel combat) {
+		this.combat = combat;
+	}
+
 	private Combatant makeTestCombatant() {
 		Combatant.CombatantBuilder builder = Combatant
-				.newBuilder(emptyDefaultCombat);
+				.newBuilder(combat);
 		try {
 			return builder
 					.setAttributes(
-							AttributeFactory.makeStandardSpecimen(Race.TROLL))
+							AttributeFactory.makeStandardSpecimen(Metatype.TROLL))
 					.setInitiative(
 							InitiativeFactory.getFourthEditionFactory()
 									.makeDefaultInitiative(builder))

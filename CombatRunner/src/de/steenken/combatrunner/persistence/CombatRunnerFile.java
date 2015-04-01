@@ -1210,6 +1210,16 @@ public final class CombatRunnerFile {
      * <code>required uint32 value = 1;</code>
      */
     int getValue();
+
+    // required uint32 bonus = 2;
+    /**
+     * <code>required uint32 bonus = 2;</code>
+     */
+    boolean hasBonus();
+    /**
+     * <code>required uint32 bonus = 2;</code>
+     */
+    int getBonus();
   }
   /**
    * Protobuf type {@code de.steenken.combatrunner.persistence.initiative}
@@ -1265,6 +1275,11 @@ public final class CombatRunnerFile {
             case 8: {
               bitField0_ |= 0x00000001;
               value_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              bonus_ = input.readUInt32();
               break;
             }
           }
@@ -1323,8 +1338,25 @@ public final class CombatRunnerFile {
       return value_;
     }
 
+    // required uint32 bonus = 2;
+    public static final int BONUS_FIELD_NUMBER = 2;
+    private int bonus_;
+    /**
+     * <code>required uint32 bonus = 2;</code>
+     */
+    public boolean hasBonus() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required uint32 bonus = 2;</code>
+     */
+    public int getBonus() {
+      return bonus_;
+    }
+
     private void initFields() {
       value_ = 0;
+      bonus_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1332,6 +1364,10 @@ public final class CombatRunnerFile {
       if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasValue()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasBonus()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1345,6 +1381,9 @@ public final class CombatRunnerFile {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, value_);
       }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, bonus_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -1357,6 +1396,10 @@ public final class CombatRunnerFile {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(1, value_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, bonus_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1476,6 +1519,8 @@ public final class CombatRunnerFile {
         super.clear();
         value_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
+        bonus_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -1508,6 +1553,10 @@ public final class CombatRunnerFile {
           to_bitField0_ |= 0x00000001;
         }
         result.value_ = value_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bonus_ = bonus_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1527,12 +1576,19 @@ public final class CombatRunnerFile {
         if (other.hasValue()) {
           setValue(other.getValue());
         }
+        if (other.hasBonus()) {
+          setBonus(other.getBonus());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (!hasValue()) {
+          
+          return false;
+        }
+        if (!hasBonus()) {
           
           return false;
         }
@@ -1587,6 +1643,39 @@ public final class CombatRunnerFile {
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000001);
         value_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // required uint32 bonus = 2;
+      private int bonus_ ;
+      /**
+       * <code>required uint32 bonus = 2;</code>
+       */
+      public boolean hasBonus() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required uint32 bonus = 2;</code>
+       */
+      public int getBonus() {
+        return bonus_;
+      }
+      /**
+       * <code>required uint32 bonus = 2;</code>
+       */
+      public Builder setBonus(int value) {
+        bitField0_ |= 0x00000002;
+        bonus_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 bonus = 2;</code>
+       */
+      public Builder clearBonus() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        bonus_ = 0;
         onChanged();
         return this;
       }
@@ -2116,6 +2205,16 @@ public final class CombatRunnerFile {
      * <code>required int32 modifier = 1;</code>
      */
     int getModifier();
+
+    // required int32 bonus = 2;
+    /**
+     * <code>required int32 bonus = 2;</code>
+     */
+    boolean hasBonus();
+    /**
+     * <code>required int32 bonus = 2;</code>
+     */
+    int getBonus();
   }
   /**
    * Protobuf type {@code de.steenken.combatrunner.persistence.initiative_modifier}
@@ -2171,6 +2270,11 @@ public final class CombatRunnerFile {
             case 8: {
               bitField0_ |= 0x00000001;
               modifier_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              bonus_ = input.readInt32();
               break;
             }
           }
@@ -2229,8 +2333,25 @@ public final class CombatRunnerFile {
       return modifier_;
     }
 
+    // required int32 bonus = 2;
+    public static final int BONUS_FIELD_NUMBER = 2;
+    private int bonus_;
+    /**
+     * <code>required int32 bonus = 2;</code>
+     */
+    public boolean hasBonus() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required int32 bonus = 2;</code>
+     */
+    public int getBonus() {
+      return bonus_;
+    }
+
     private void initFields() {
       modifier_ = 0;
+      bonus_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2238,6 +2359,10 @@ public final class CombatRunnerFile {
       if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasModifier()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasBonus()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -2251,6 +2376,9 @@ public final class CombatRunnerFile {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeInt32(1, modifier_);
       }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, bonus_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -2263,6 +2391,10 @@ public final class CombatRunnerFile {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, modifier_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, bonus_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2382,6 +2514,8 @@ public final class CombatRunnerFile {
         super.clear();
         modifier_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
+        bonus_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -2414,6 +2548,10 @@ public final class CombatRunnerFile {
           to_bitField0_ |= 0x00000001;
         }
         result.modifier_ = modifier_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.bonus_ = bonus_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2433,12 +2571,19 @@ public final class CombatRunnerFile {
         if (other.hasModifier()) {
           setModifier(other.getModifier());
         }
+        if (other.hasBonus()) {
+          setBonus(other.getBonus());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (!hasModifier()) {
+          
+          return false;
+        }
+        if (!hasBonus()) {
           
           return false;
         }
@@ -2493,6 +2638,39 @@ public final class CombatRunnerFile {
       public Builder clearModifier() {
         bitField0_ = (bitField0_ & ~0x00000001);
         modifier_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // required int32 bonus = 2;
+      private int bonus_ ;
+      /**
+       * <code>required int32 bonus = 2;</code>
+       */
+      public boolean hasBonus() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required int32 bonus = 2;</code>
+       */
+      public int getBonus() {
+        return bonus_;
+      }
+      /**
+       * <code>required int32 bonus = 2;</code>
+       */
+      public Builder setBonus(int value) {
+        bitField0_ |= 0x00000002;
+        bonus_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 bonus = 2;</code>
+       */
+      public Builder clearBonus() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        bonus_ = 0;
         onChanged();
         return this;
       }
@@ -6709,37 +6887,37 @@ public final class CombatRunnerFile {
       "rsistence.combatant\022<\n\006combat\030\002 \001(\0132,.de" +
       ".steenken.combatrunner.persistence.comba" +
       "t\022A\n\005state\030\003 \001(\01322.de.steenken.combatrun" +
-      "ner.persistence.combat_state\"\033\n\ninitiati" +
-      "ve\022\r\n\005value\030\001 \002(\r\"j\n\022attribute_modifier\022" +
-      "B\n\tattribute\030\001 \002(\0162/.de.steenken.combatr" +
-      "unner.persistence.Attribute\022\020\n\010modifier\030",
-      "\002 \002(\005\"\'\n\023initiative_modifier\022\020\n\010modifier" +
-      "\030\001 \002(\005\"\242\001\n\010modifier\022K\n\tattribute\030\001 \001(\01328" +
-      ".de.steenken.combatrunner.persistence.at" +
-      "tribute_modifier\022I\n\006inimod\030\002 \001(\01329.de.st" +
-      "eenken.combatrunner.persistence.initiati" +
-      "ve_modifier\"f\n\017attribute_array\022C\n\nattrib" +
-      "utes\030\001 \003(\0162/.de.steenken.combatrunner.pe" +
-      "rsistence.Attribute\022\016\n\006values\030\002 \003(\r\"\352\001\n\t" +
-      "combatant\022>\n\007edition\030\001 \002(\0162-.de.steenken" +
-      ".combatrunner.persistence.Edition\022I\n\natt",
-      "ributes\030\002 \002(\01325.de.steenken.combatrunner" +
-      ".persistence.attribute_array\022D\n\ninitiati" +
-      "ve\030\003 \001(\01320.de.steenken.combatrunner.pers" +
-      "istence.initiative\022\014\n\004name\030\004 \002(\t\"n\n\014comb" +
-      "at_state\022\033\n\023number_of_modifiers\030\001 \003(\r\022A\n" +
-      "\tmodifiers\030\002 \003(\0132..de.steenken.combatrun" +
-      "ner.persistence.modifier\"\235\001\n\006combat\022>\n\007e" +
-      "dition\030\001 \002(\0162-.de.steenken.combatrunner." +
-      "persistence.Edition\022\014\n\004name\030\002 \002(\t\022E\n\014par" +
-      "ticipants\030\003 \003(\0132/.de.steenken.combatrunn",
-      "er.persistence.combatant*\200\001\n\tAttribute\022\007" +
-      "\n\003BOD\020\001\022\007\n\003AGI\020\002\022\007\n\003REA\020\003\022\007\n\003STR\020\004\022\007\n\003CH" +
-      "A\020\005\022\007\n\003INT\020\006\022\007\n\003LOG\020\007\022\007\n\003WIL\020\010\022\007\n\003EDG\020\t\022" +
-      "\007\n\003RES\020\n\022\007\n\003MAG\020\013\022\007\n\003PDa\020\014\022\007\n\003SDa\020\r* \n\007E" +
-      "dition\022\n\n\006FOURTH\020\001\022\t\n\005FIFTH\020\002B8\n$de.stee" +
-      "nken.combatrunner.persistenceB\020CombatRun" +
-      "nerFile"
+      "ner.persistence.combat_state\"*\n\ninitiati" +
+      "ve\022\r\n\005value\030\001 \002(\r\022\r\n\005bonus\030\002 \002(\r\"j\n\022attr" +
+      "ibute_modifier\022B\n\tattribute\030\001 \002(\0162/.de.s" +
+      "teenken.combatrunner.persistence.Attribu",
+      "te\022\020\n\010modifier\030\002 \002(\005\"6\n\023initiative_modif" +
+      "ier\022\020\n\010modifier\030\001 \002(\005\022\r\n\005bonus\030\002 \002(\005\"\242\001\n" +
+      "\010modifier\022K\n\tattribute\030\001 \001(\01328.de.steenk" +
+      "en.combatrunner.persistence.attribute_mo" +
+      "difier\022I\n\006inimod\030\002 \001(\01329.de.steenken.com" +
+      "batrunner.persistence.initiative_modifie" +
+      "r\"f\n\017attribute_array\022C\n\nattributes\030\001 \003(\016" +
+      "2/.de.steenken.combatrunner.persistence." +
+      "Attribute\022\016\n\006values\030\002 \003(\r\"\352\001\n\tcombatant\022" +
+      ">\n\007edition\030\001 \002(\0162-.de.steenken.combatrun",
+      "ner.persistence.Edition\022I\n\nattributes\030\002 " +
+      "\002(\01325.de.steenken.combatrunner.persisten" +
+      "ce.attribute_array\022D\n\ninitiative\030\003 \001(\01320" +
+      ".de.steenken.combatrunner.persistence.in" +
+      "itiative\022\014\n\004name\030\004 \002(\t\"n\n\014combat_state\022\033" +
+      "\n\023number_of_modifiers\030\001 \003(\r\022A\n\tmodifiers" +
+      "\030\002 \003(\0132..de.steenken.combatrunner.persis" +
+      "tence.modifier\"\235\001\n\006combat\022>\n\007edition\030\001 \002" +
+      "(\0162-.de.steenken.combatrunner.persistenc" +
+      "e.Edition\022\014\n\004name\030\002 \002(\t\022E\n\014participants\030",
+      "\003 \003(\0132/.de.steenken.combatrunner.persist" +
+      "ence.combatant*\200\001\n\tAttribute\022\007\n\003BOD\020\001\022\007\n" +
+      "\003AGI\020\002\022\007\n\003REA\020\003\022\007\n\003STR\020\004\022\007\n\003CHA\020\005\022\007\n\003INT" +
+      "\020\006\022\007\n\003LOG\020\007\022\007\n\003WIL\020\010\022\007\n\003EDG\020\t\022\007\n\003RES\020\n\022\007" +
+      "\n\003MAG\020\013\022\007\n\003PDa\020\014\022\007\n\003SDa\020\r* \n\007Edition\022\n\n\006" +
+      "FOURTH\020\001\022\t\n\005FIFTH\020\002B8\n$de.steenken.comba" +
+      "trunner.persistenceB\020CombatRunnerFile"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6757,7 +6935,7 @@ public final class CombatRunnerFile {
           internal_static_de_steenken_combatrunner_persistence_initiative_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_de_steenken_combatrunner_persistence_initiative_descriptor,
-              new java.lang.String[] { "Value", });
+              new java.lang.String[] { "Value", "Bonus", });
           internal_static_de_steenken_combatrunner_persistence_attribute_modifier_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_de_steenken_combatrunner_persistence_attribute_modifier_fieldAccessorTable = new
@@ -6769,7 +6947,7 @@ public final class CombatRunnerFile {
           internal_static_de_steenken_combatrunner_persistence_initiative_modifier_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_de_steenken_combatrunner_persistence_initiative_modifier_descriptor,
-              new java.lang.String[] { "Modifier", });
+              new java.lang.String[] { "Modifier", "Bonus", });
           internal_static_de_steenken_combatrunner_persistence_modifier_descriptor =
             getDescriptor().getMessageTypes().get(4);
           internal_static_de_steenken_combatrunner_persistence_modifier_fieldAccessorTable = new

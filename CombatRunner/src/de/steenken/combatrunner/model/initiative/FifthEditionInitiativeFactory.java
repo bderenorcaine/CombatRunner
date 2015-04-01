@@ -16,8 +16,8 @@ public class FifthEditionInitiativeFactory extends InitiativeFactory {
 	}
 
 	@Override
-	public Initiative makeInitiative(Combatant combatant, int number) {
-		return new FifthEditionInitiative(combatant, number);
+	public Initiative makeInitiative(final Combatant combatant, final int number, final int bonus) {
+		return new FifthEditionInitiative(combatant, number, bonus);
 	}
 
 	

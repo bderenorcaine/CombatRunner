@@ -1,6 +1,6 @@
 package de.steenken.combatrunner.model.attributes;
 
-import de.steenken.combatrunner.model.attributes.RaceDefaults.Race;
+import de.steenken.combatrunner.model.attributes.MetatypeDefaults.Metatype;
 
 public class AttributeFactory {
 
@@ -8,8 +8,8 @@ public class AttributeFactory {
 		
 	}
 	
-	public static AttributeArray makeStandardSpecimen(Race race) {
-		return RaceDefaults.getDefaults(race);
+	public static AttributeArray makeStandardSpecimen(Metatype race) {
+		return MetatypeDefaults.getDefaults(race);
 	}
 	
 }

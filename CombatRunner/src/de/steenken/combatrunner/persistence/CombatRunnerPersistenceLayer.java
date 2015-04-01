@@ -59,15 +59,11 @@ public final class CombatRunnerPersistenceLayer {
 		}
 	}
 	
-	public static void saveCombatant(Combatant combatant, String filename) {
+	public static void saveCombatant(Combatant combatant, String filename) throws IOException {
 		try (FileOutputStream outputStream = new FileOutputStream(filename)) {
 			file.Builder builder = file.newBuilder();
 			builder.setCombatant(writeCombatant(combatant));
 			builder.build().writeTo(outputStream);
-		} catch (IOException e) {
-			MainWindow.getMainWindow().errorMessage(
-					"IOException while trying to write file \"" + filename
-							+ "\"\\Message reads: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -97,7 +93,7 @@ public final class CombatRunnerPersistenceLayer {
 			throw new EditionMisMatchError();
 		}
 		return combat.getInitiativeFactory().makeInitiative(builder,
-				input.getInitiative().getValue());
+				input.getInitiative().getValue(), input.getInitiative().getBonus());
 	}
 
 	private static AttributeArray readAttributes(attribute_array attributes) {
@@ -134,6 +130,7 @@ public final class CombatRunnerPersistenceLayer {
 	private static initiative writeInitiative(final Initiative ini) {
 		initiative.Builder builder = initiative.newBuilder();
 		builder.setValue(ini.getEditionAgnosticValue());
+		builder.setBonus(ini.getEditionAgnosticBonus());
 		return builder.build();
 	}
 

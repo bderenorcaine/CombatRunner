@@ -8,15 +8,18 @@ public class FifthEditionInitiative extends Initiative {
 
 	private int initiativeDice = 1;
 	
+	private int initiativeBonus = 0;
+	
 	private int lastRoll = 0;
 	
 	public FifthEditionInitiative(final Combatant combatant) {
 		super(combatant);
 	}
 	
-	public FifthEditionInitiative(final Combatant combatant, final int dice) {
+	public FifthEditionInitiative(final Combatant combatant, final int dice, final int bonus) {
 		super(combatant);
 		initiativeDice = dice;
+		initiativeBonus = bonus;
 	}
 
 	@Override
@@ -28,6 +31,10 @@ public class FifthEditionInitiative extends Initiative {
 		}
 	}
 
+	private int getCurrentValue() {
+		return getBaseValue() + lastRoll + initiativeBonus;
+	}
+	
 	@Override
 	public void roll() {
 		lastRoll = de.steenken.combatrunner.dice.Dice.rollDiceForSum(initiativeDice);
@@ -40,7 +47,7 @@ public class FifthEditionInitiative extends Initiative {
 
 	@Override
 	public boolean canAct() {
-		return (getBaseValue() + lastRoll > 0);
+		return (getCurrentValue() > 0);
 	}
 
 	@Override
@@ -49,12 +56,17 @@ public class FifthEditionInitiative extends Initiative {
 	}
 	
 	public final String toString() {
-		return getBaseValue() + " + " + initiativeDice + "D6";
+		return getBaseValue() + " + " + initiativeBonus + " + " + initiativeDice + "D6";
 	}
 
 	@Override
 	public int getEditionAgnosticValue() {
 		return initiativeDice;
+	}
+	
+	@Override
+	public int getEditionAgnosticBonus() {
+		return initiativeBonus;
 	}
 
 }

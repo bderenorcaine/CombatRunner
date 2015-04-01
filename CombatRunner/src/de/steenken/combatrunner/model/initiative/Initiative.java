@@ -28,4 +28,5 @@ public abstract class Initiative implements Comparable<Initiative>{
 	}
 	
 	public abstract int getEditionAgnosticValue();
+	public abstract int getEditionAgnosticBonus();
 }

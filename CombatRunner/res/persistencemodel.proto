@@ -32,6 +32,7 @@ enum Edition {
 
 message initiative {
 	required uint32 value = 1;
+	required uint32 bonus = 2;
 }
 
 message attribute_modifier {
@@ -41,6 +42,7 @@ message attribute_modifier {
 
 message initiative_modifier {
 	required int32 modifier = 1;
+	required int32 bonus = 2;
 }
 
 message modifier {

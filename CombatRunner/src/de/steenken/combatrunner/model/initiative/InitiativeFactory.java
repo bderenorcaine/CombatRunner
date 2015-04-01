@@ -15,7 +15,7 @@ public abstract class InitiativeFactory {
 
 	public abstract Initiative makeDefaultInitiative(final Combatant combatant);
 	
-	public abstract Initiative makeInitiative(final Combatant combatant, final int number);
+	public abstract Initiative makeInitiative(final Combatant combatant, final int number, final int bonus);
 	
 	public abstract CombatModel.Edition getEdition();
 }

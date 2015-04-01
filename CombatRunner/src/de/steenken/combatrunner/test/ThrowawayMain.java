@@ -6,7 +6,7 @@ import de.steenken.combatrunner.model.CombatModel.Edition;
 import de.steenken.combatrunner.model.Combatant.CombatantBuilder;
 import de.steenken.combatrunner.model.attributes.AttributeFactory;
 import de.steenken.combatrunner.model.attributes.Attribute.Name;
-import de.steenken.combatrunner.model.attributes.RaceDefaults.Race;
+import de.steenken.combatrunner.model.attributes.MetatypeDefaults.Metatype;
 import de.steenken.combatrunner.model.initiative.InitiativeFactory;
 import de.steenken.combatrunner.persistence.CombatRunnerPersistenceLayer;
 
@@ -29,7 +29,7 @@ public class ThrowawayMain {
 			System.out.println("Created:\n" + ono.fullDescription());
 			builder = Combatant.newBuilder(combat);
 			Combatant stitch = builder.setName("Stitch")
-					.setAttributes(AttributeFactory.makeStandardSpecimen(Race.HUMAN))
+					.setAttributes(AttributeFactory.makeStandardSpecimen(Metatype.HUMAN))
 					.setInitiative(iniFactory.makeDefaultInitiative(builder)).build();
 			System.out.println("Created:\n" + stitch.fullDescription());
 			System.out.println("Saving Ono and Stitch to individual files...");

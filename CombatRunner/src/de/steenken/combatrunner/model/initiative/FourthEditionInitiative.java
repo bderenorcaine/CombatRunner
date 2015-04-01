@@ -11,6 +11,8 @@ public class FourthEditionInitiative extends Initiative {
 
 	private int initiativePasses = 1;
 	
+	private int initiativeBonus = 0;
+	
 	private int lastRolled = 0;
 	
 	private boolean affectedByGlitch = false;
@@ -21,13 +23,14 @@ public class FourthEditionInitiative extends Initiative {
 		super(combatant);
 	}
 	
-	FourthEditionInitiative(final Combatant combatant, final int passes) {
+	FourthEditionInitiative(final Combatant combatant, final int passes, final int bonus) {
 		super(combatant);
 		initiativePasses = passes;
+		initiativeBonus = bonus;
 	}
 	
 	private int getValueThisPhase() {
-		return getBaseValue() + lastRolled;
+		return getBaseValue() + lastRolled + initiativeBonus;
 	}
 	
 	@Override
@@ -86,4 +89,8 @@ public class FourthEditionInitiative extends Initiative {
 		return initiativePasses;
 	}
 
+	@Override
+	public int getEditionAgnosticBonus() {
+		return initiativeBonus;
+	}
 }
